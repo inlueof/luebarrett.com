@@ -1,124 +1,429 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, Mail, HeartHandshake, BookOpen, Users, Compass, Leaf } from "lucide-react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lue Barrett</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-export default function LueBarrettMockup() {
-  return (
-    <div className="min-h-screen bg-[#F4F6F8] text-[#262626]">
-      <header className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
-        <div className="flex items-center gap-4">
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #F4F6F8;
+      color: #262626;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 24px 0;
+      background: #fff;
+      border-bottom: 1px solid #D9E1E8;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand img {
+      width: 260px;
+      max-width: 70vw;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+    }
+
+    nav {
+      display: flex;
+      gap: 32px;
+      font-size: 15px;
+    }
+
+    nav a {
+      color: #262626;
+      text-decoration: none;
+    }
+
+    nav a:hover { color: #6B7C8C; }
+
+    .hero {
+      padding: 96px 0 72px;
+    }
+
+    .eyebrow {
+      color: #6B7C8C;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      font-size: 12px;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      color: #2B2B2B;
+      font-weight: 500;
+      line-height: 1.08;
+    }
+
+    h1 {
+      font-size: clamp(44px, 7vw, 76px);
+      max-width: 900px;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-text {
+      margin-top: 28px;
+      max-width: 720px;
+      color: #5E5A55;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 14px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+
+    .button.primary {
+      background: #2C3539;
+      color: #F8FAFC;
+    }
+
+    .button.secondary {
+      background: #FFFFFF;
+      color: #2B2B2B;
+      border: 1px solid #D9E1E8;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      opacity: 0.92;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .about-card {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 48px;
+      background: #FFFFFF;
+      border-radius: 40px;
+      padding: 48px;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.05);
+    }
+
+    .about-box {
+      background: #E9EEF3;
+      border-radius: 32px;
+      padding: 28px;
+    }
+
+    .about-box img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 24px;
+      display: block;
+      margin-bottom: 28px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+    }
+
+    .about-box h2 {
+      font-size: 34px;
+    }
+
+    .about-box p {
+      margin-top: 18px;
+      color: #5E5A55;
+    }
+
+    .about-copy h2 {
+      font-size: clamp(36px, 4vw, 54px);
+      line-height: 1.1;
+    }
+
+    .about-copy .role {
+      color: #5E5A55;
+      font-size: 18px;
+      margin-bottom: 28px;
+    }
+
+    .about-body {
+      margin-top: 30px;
+      display: grid;
+      gap: 20px;
+      color: #5E5A55;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .services-heading {
+      max-width: 780px;
+      margin-bottom: 48px;
+    }
+
+    .services-heading h2 {
+      font-size: clamp(36px, 4vw, 52px);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      background: #FFFFFF;
+      border: 1px solid #D9E1E8;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.05);
+    }
+
+    .service-card .icon {
+      font-size: 26px;
+      margin-bottom: 18px;
+    }
+
+    .service-card h3 {
+      font-size: 26px;
+    }
+
+    .service-card p {
+      margin-top: 16px;
+      color: #5E5A55;
+    }
+
+    .contact-card {
+      background: #2C3539;
+      color: #F8FAFC;
+      text-align: center;
+      border-radius: 40px;
+      padding: 56px 40px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.10);
+    }
+
+    .contact-card h2 {
+      color: #F8FAFC;
+      font-size: 44px;
+    }
+
+    .contact-card p {
+      max-width: 660px;
+      margin: 20px auto 0;
+      color: rgba(248,250,252,0.82);
+    }
+
+    .contact-card .button {
+      margin-top: 32px;
+      background: #FFFFFF;
+      color: #2B2B2B;
+    }
+
+    @media (max-width: 900px) {
+      nav { display: none; }
+
+      .hero {
+        padding-top: 64px;
+      }
+
+      .about-card,
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-box img {
+        height: 320px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .brand img {
+        width: 220px;
+      }
+
+      .about-card,
+      .contact-card {
+        padding: 28px;
+        border-radius: 28px;
+      }
+
+      .about-box img {
+        height: 280px;
+      }
+
+      .button-row {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav-wrap">
+      <a class="brand" href="#" aria-label="Lue Barrett home">
+        <img
+          src="https://raw.githubusercontent.com/inlueof/luebarrett.com/main/LueBarrett%20Logo.png"
+          alt="Lue Barrett logo"
+        />
+      </a>
+
+      <nav>
+        <a href="#about">About Me</a>
+        <a href="#work">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Empowering learning & strengthening communities</p>
+
+        <h1>
+          Helping people and organizations learn, grow, and make meaningful impact.
+        </h1>
+
+        <p class="hero-text">
+          Lue Barrett provides learning consultation, educational content development,
+          and grant writing support for healthcare professionals, educators, learners,
+          and community organizations.
+        </p>
+
+        <div class="button-row">
+          <a href="#about" class="button primary">Meet Ruth</a>
+          <a href="#work" class="button secondary">Explore the Work</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-card">
+        <div class="about-box">
           <img
-            src="/logo.png"
-            alt="Lue Barrett logo"
-            className="h-14 w-auto rounded-xl object-contain shadow-sm"
+            src="https://raw.githubusercontent.com/inlueof/inlueof.github.io/main/IMG_3816.avif"
+            alt="Portrait of Ruth"
           />
-          <div>
-            <p className="font-serif text-xl text-[#2B2B2B]">Lue Barrett</p>
-            <p className="text-xs uppercase tracking-[0.25em] text-[#6B7C8C]">Learning • Support • Community</p>
-          </div>
+
+          <h2>About Me</h2>
+          <p>A little about the person behind the work.</p>
         </div>
 
-        <nav className="hidden gap-8 text-sm text-[#5E5A55] md:flex">
-          <a href="#about" className="hover:text-[#6B7C8C]">About Me</a>
-          <a href="#work" className="hover:text-[#6B7C8C]">Work</a>
-          <a href="#contact" className="hover:text-[#6B7C8C]">Contact</a>
-        </nav>
-      </header>
+        <div class="about-copy">
+          <p class="eyebrow">Hello, I’m Ruth</p>
+          <p class="role">Nurse • Educator • Researcher</p>
 
-      <main>
-        <section className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 md:grid-cols-[1.05fr_0.95fr] md:py-24">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <p className="mb-5 flex items-center gap-2 text-sm uppercase tracking-[0.32em] text-[#6B7C8C]"><Leaf size={16} /> Empowering learning & strengthening communities</p>
-            <h1 className="max-w-4xl font-serif text-5xl leading-tight tracking-tight text-[#2B2B2B] md:text-7xl">
-              Helping people and organizations learn, grow, and make meaningful impact.
-            </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-[#5E5A55]">
-              Lue Barrett provides learning consultation, educational content development, and grant writing support for healthcare professionals, educators, learners, and community organizations.
+          <h2>
+            I created Lue Barrett to support people through education,
+            mentorship, and community-focused work.
+          </h2>
+
+          <div class="about-body">
+            <p>
+              As a nurse, educator, and researcher, I’ve spent years supporting
+              learners, healthcare professionals, and organizations through
+              teaching, mentorship, and evidence-informed practice.
             </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <a href="#about" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#2C3539] px-6 py-3 text-sm font-semibold text-[#F8FAFC] shadow-lg shadow-black/5 transition hover:opacity-90">
-                Meet Ruth <ArrowRight size={16} />
-              </a>
-              <a href="#work" className="inline-flex items-center justify-center gap-2 rounded-full border border-[#9A6B3E]/30 bg-white px-6 py-3 text-sm font-semibold text-[#2B2B2B] transition hover:border-[#9A6B3E]/70">
-                Explore the work
-              </a>
-            </div>
-          </motion.div>
 
-          </section>
-
-        <section id="about" className="px-6 py-20">
-          <div className="mx-auto grid max-w-6xl gap-12 rounded-[2.5rem] bg-[#FFFFFF] p-8 shadow-xl shadow-black/5 md:grid-cols-[0.85fr_1.15fr] md:p-12">
-            <div className="rounded-[2rem] bg-[#E9EEF3] p-6">
-              <img
-                src="https://raw.githubusercontent.com/inlueof/inlueof.github.io/main/IMG_3816.avif"
-                alt="Ruth portrait"
-                className="mb-6 h-56 w-full rounded-[1.5rem] object-cover shadow-lg"
-              />
-              <HeartHandshake className="mb-6 text-[#6B7C8C]" size={34} />
-              <p className="font-serif text-3xl leading-tight text-[#2B2B2B]">
-                About me
-              </p>
-              <p className="mt-5 leading-7 text-[#5E5A55]">
-                A little about the person behind the work.
-              </p>
-            </div>
-
-            <div>
-              <p className="mb-4 text-sm uppercase tracking-[0.3em] text-[#6B7C8C]">Hello, I’m Ruth</p>
-              <p className="mb-6 text-lg text-[#5E5A55]">Nurse • Educator • Researcher</p>
-              <h2 className="font-serif text-4xl leading-tight text-[#2B2B2B] md:text-5xl">
-                I created Lue Barrett to support people through education, mentorship, and community-focused work.
-              </h2>
-              <div className="mt-7 space-y-5 text-lg leading-8 text-[#5E5A55]">
-                <p>
-                  As a nurse, educator, and researcher, I’ve spent years supporting learners, healthcare professionals, and organizations through teaching, mentorship, and evidence-informed practice. What matters most to me is creating spaces where people feel supported, capable, and empowered to grow.
-                </p>
-                <p>
-                  Through Lue Barrett, I offer practical and thoughtful support in areas such as educational consultation, content development, grant writing, and professional learning. Whether working with students, educators, or community organizations, my goal is always to make complex work feel more human, accessible, and meaningful.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="work" className="mx-auto max-w-7xl px-6 py-20">
-          <div className="mb-12 max-w-3xl">
-            <p className="mb-4 text-sm uppercase tracking-[0.35em] text-[#6B7C8C]">Services</p>
-            <h2 className="font-serif text-4xl text-[#2B2B2B] md:text-5xl">Support tailored to learning, growth, and community impact.</h2>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-3">
-            {[
-              { icon: BookOpen, title: "Learning Consultation", text: "Consultation for healthcare education, learner support, curriculum thinking, and evidence-informed teaching practices." },
-              { icon: Users, title: "Educational Content Development", text: "Development of educational resources, presentations, workshops, learning materials, and professional content." },
-              { icon: Compass, title: "Grant Writing & Proposal Support", text: "Support for nonprofits, healthcare initiatives, and community organizations seeking strong funding applications and project development." },
-            ].map((item) => (
-              <div key={item.title} className="rounded-[1.5rem] border border-[#D9E1E8] bg-[#FFFFFF] p-7 shadow-xl shadow-black/5">
-                <item.icon className="mb-6 text-[#6B7C8C]" size={28} />
-                <h3 className="font-serif text-2xl text-[#2B2B2B]">{item.title}</h3>
-                <p className="mt-4 leading-7 text-[#5E5A55]">{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="contact" className="px-6 pb-24">
-          <div className="mx-auto max-w-5xl rounded-[2.5rem] border border-[#C9D4DE] bg-[#2C3539] p-10 text-center text-[#F8FAFC] shadow-2xl shadow-black/10 md:p-14">
-            <h2 className="font-serif text-4xl">Let’s connect.</h2>
-            <p className="mx-auto mt-5 max-w-2xl leading-8 text-[#E8EEF5]/80">
-              Whether you are looking for educational support, collaboration, content development, or grant writing assistance, I’d love to connect.
+            <p>
+              Through Lue Barrett, I offer practical and thoughtful support in
+              areas such as educational consultation, content development, grant
+              writing, and professional learning.
             </p>
-            <a href="mailto:hello@luebarrett.com" className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-[#FFFFFF] px-6 py-3 text-sm font-semibold text-[#2B2B2B]">
-              <Mail size={16} /> hello@luebarrett.com
-            </a>
           </div>
-        </section>
-      </main>
-    </div>
-  );
-}
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="container">
+        <div class="services-heading">
+          <p class="eyebrow">Services</p>
+          <h2>Support tailored to learning, growth, and community impact.</h2>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="icon">📘</div>
+            <h3>Learning Consultation</h3>
+            <p>
+              Consultation for healthcare education, learner support, curriculum
+              thinking, and evidence-informed teaching practices.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="icon">👥</div>
+            <h3>Educational Content Development</h3>
+            <p>
+              Development of educational resources, presentations, workshops,
+              learning materials, and professional content.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="icon">✍</div>
+            <h3>Grant Writing & Proposal Support</h3>
+            <p>
+              Support for nonprofits, healthcare initiatives, and community
+              organizations seeking strong funding applications and project
+              development.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-card">
+        <h2>Let’s connect.</h2>
+
+        <p>
+          Whether you are looking for educational support, collaboration, content
+          development, or grant writing assistance, I’d love to connect.
+        </p>
+
+        <a href="mailto:hello@luebarrett.com" class="button">
+          hello@luebarrett.com
+        </a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
